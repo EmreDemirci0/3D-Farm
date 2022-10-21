@@ -1,23 +1,22 @@
+//boþþþþþþþþþþþþþþþþþþþþþþþþþþþþ
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class shopOpen : MonoBehaviour
-{
+{   
+    //FarmLanda Gelince crossta bug var
     [SerializeField] float raylenght;
-    [SerializeField] private Image crosshair = null;
-    [SerializeField] private bool isShopOpen;
+    [HideInInspector] public bool isShopOpen;
 
-    [SerializeField] string Aciklama = "";
-    public KeyCode openShopPanelKeyCode = KeyCode.Tab;
-    public string interactabletag = "";
-    public GameObject ShopPanel;
-    bool runItOnce=true;//panel aç kapa yaparken cursor sýkýntýlarýný engellemek için cursoru bir kere kapatýyoruz.
+    [SerializeField]List<shopOpenClass> shopOpenClass = new List<shopOpenClass>();
 
+    bool runItOnce = true;//panel aç kapa yaparken cursor sýkýntýlarýný engellemek için cursoru bir kere kapatýyoruz.
+    RayCastDeneme rcd;
     void Start()
     {
-        crosshair = GameObject.FindGameObjectWithTag("Crosshair").GetComponent<Image>();
+        rcd = GetComponent<RayCastDeneme>();
         isShopOpen = false;
     }
     void Update()
@@ -28,57 +27,66 @@ public class shopOpen : MonoBehaviour
     {
         RaycastHit hit;
         Vector3 fwd = transform.TransformDirection(Vector3.forward);
-        if (Physics.Raycast(transform.position, fwd, out hit, raylenght))
+        for (int i = 0; i < shopOpenClass.Count; i++)
         {
-            if (hit.collider.gameObject.tag == interactabletag)
+            if (Physics.Raycast(transform.position, fwd, out hit, raylenght))
             {
-                runItOnce = true;
-                CrossHairChange(Color.blue);
-                if (Input.GetKeyDown(openShopPanelKeyCode))
-                {
-                    if (isShopOpen)
-                    {
-                        ShopPanel.SetActive(false);
-                        isShopOpen = false;
-                        Cursor.visible = false;
-                        Cursor.lockState = CursorLockMode.Locked;
-                        CrossHairChange(Color.white);
-                    }
-                    else if (!isShopOpen)
-                    {
-                        ShopPanel.SetActive(true);
-                        isShopOpen = true;
-                        Cursor.visible = true;
-                        Cursor.lockState = CursorLockMode.None;
 
+                if (hit.collider.gameObject.tag == shopOpenClass[i].interactabletag)
+                {
+                    runItOnce = true;
+                    rcd.CrosshairChange(true,/* shopOpenClass[i].colour*/Color.blue);
+                    if (Input.GetKeyDown(shopOpenClass[i].openShopPanelKeyCode))
+                    {
+                        if (isShopOpen)
+                        {
+                            shopOpenClass[i].ShopPanel.SetActive(false);
+                            isShopOpen = false;
+                            Cursor.visible = false;
+                            Cursor.lockState = CursorLockMode.Locked;
+                            rcd.CrosshairChange(false,/* shopOpenClass[i].colour*/Color.blue);
+                        }
+                        else if (!isShopOpen)
+                        {
+                            shopOpenClass[i].ShopPanel.SetActive(true);
+                            isShopOpen = true;
+                            Cursor.visible = true;
+                            Cursor.lockState = CursorLockMode.None;
+
+                        }
                     }
                 }
             }
+
+
+
             else
             {
-               
-               
-             
+                rcd.CrosshairChange(false, /*shopOpenClass[i].colour*/Color.blue);
+                shopOpenClass[i].ShopPanel.SetActive(false);
+                if (runItOnce)
+                {
+                    Cursor.visible = false;
+                    Cursor.lockState = CursorLockMode.Locked;
+                    runItOnce = false;
+                }
+
+                isShopOpen = false;
             }
-
-        }
-        else
-        {
-            CrossHairChange(Color.white);
-            ShopPanel.SetActive(false);
-            if (runItOnce)
-            {
-                Cursor.visible = false;
-                Cursor.lockState = CursorLockMode.Locked;
-                runItOnce = false;
-           }
-
-            isShopOpen = false;
         }
     }
 
-    void CrossHairChange(Color colour)
-    {
-        crosshair.color = colour;
-    }
+    //void CrossHairChange(Color colour)
+    //{
+    //    crosshair.color = colour;
+    //}
+}
+[System.Serializable]
+class shopOpenClass
+{
+    [SerializeField] string Aciklama = "";
+    public KeyCode openShopPanelKeyCode = KeyCode.Tab;
+    public string interactabletag = "";
+    public GameObject ShopPanel;
+   // public Color colour;
 }

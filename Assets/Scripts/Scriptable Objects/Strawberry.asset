@@ -17,5 +17,5 @@ MonoBehaviour:
   canStackable: 1
   itemIcon: {fileID: 21300000, guid: d76476083370a994aae284499e55bfb2, type: 3}
   price: 200
-  itemPrefab: {fileID: 0}
+  ItemPrefab: {fileID: 5294885999716033264, guid: 68fe5fe87098d964582ea75ab0605164, type: 3}
   energy: 20

@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MyFurnitureController : MonoBehaviour
-{
+{    
+    //My Furniture anims
      Animator furnitureAnim;
-     bool isFurnitureOpen = false;
+    //Is the furniture cover open?
+    bool isFurnitureOpen = false;
+    //Animator setbool string
     [SerializeField] string setboolAnimName = null;
     private void Awake()
     {
@@ -13,7 +16,7 @@ public class MyFurnitureController : MonoBehaviour
     }
     public void PlayAnimation()
     {
-      
+        
         if (!isFurnitureOpen)
         {
            

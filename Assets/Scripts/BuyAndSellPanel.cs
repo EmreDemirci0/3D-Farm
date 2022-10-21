@@ -4,44 +4,22 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class BuyAndSellPanel : MonoBehaviour
-{
+{   
+    //Buy Panel,Sell Panel and Main Panel take with Inspector
     [SerializeField] GameObject BuyPanel, SellPanel,MainPanel;
-     Image BuyImage, SellImage;
-    void Start()
-    {
-        BuyImage = BuyPanel.GetComponent<Image>();
-        SellImage = SellPanel.GetComponent<Image>();
-
-    }
-
     public void BuyButton()
-    {
-        //MainPanel.SetActive(true);
+    {   
+        //Buy Panel Will be Opened
         BuyPanel.SetActive(true);
+        //Sell Panel Will be Closed
         SellPanel.SetActive(false);
-
-
-        //Color temp = SellImage.color;
-        //temp.a = 0f;
-        //SellImage.color = temp;
-
-        //Color temps = BuyImage.color;
-        //temps.a = 1f;
-        //BuyImage.color = temps;
-
     }
     public void SellButton()
     {
-        //MainPanel.SetActive(true);
+        //Buy Panel Will be Closed
         BuyPanel.SetActive(false);
+        //Sell Panel Will be Opened
         SellPanel.SetActive(true);
-        //Color temp = BuyImage.color;
-        //temp.a = 0f;
-        //BuyImage.color = temp;
-
-        //Color temps = SellImage.color;
-        //temps.a = 1f;
-        //SellImage.color = temps;
     }
 
 }

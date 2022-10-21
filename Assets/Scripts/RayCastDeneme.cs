@@ -39,7 +39,7 @@ public class RayCastDeneme : MonoBehaviour
                     {   
                         raycastTuru[i].raycastedObj = hit.collider.gameObject.GetComponent<MyFurnitureController>();
 
-                        CrosshairChange(true);
+                        CrosshairChange(true, Color.red);
 
                     }
                     isCrosshairActive = true;
@@ -52,7 +52,7 @@ public class RayCastDeneme : MonoBehaviour
                 }
                 else if(hit.collider.gameObject.tag=="Untagged")
                 {
-                    CrosshairChange(false);
+                    CrosshairChange(false, Color.red);
                 }
 
             }
@@ -63,18 +63,19 @@ public class RayCastDeneme : MonoBehaviour
 
             if (isCrosshairActive)
             {
-                CrosshairChange(false);
+                CrosshairChange(false,Color.red);
                 doOnce = false;
             }
 
         }
 
     }
-    void CrosshairChange(bool on)
+    //Main Cross Change Color Method
+   public void CrosshairChange(bool on,Color colour)
     {
         if (on && !doOnce)
         {
-            crosshair.color = Color.red;
+            crosshair.color = colour;
         }
         else
         {

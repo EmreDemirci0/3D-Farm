@@ -19,6 +19,11 @@ TagManager:
   - ShopPanel
   - Computer
   - WantToBuy
+  - Cow
+  - Cursor
+  - Floor
+  - FarmLandLarge
+  - BuyInventoryContent
   layers:
   - Default
   - TransparentFX

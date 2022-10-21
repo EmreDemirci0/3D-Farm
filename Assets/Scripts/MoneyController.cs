@@ -1,31 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
-public class MoneyController : MonoBehaviour
+public class MoneyController : MonoBehaviour//Envantere Aktarma Kodu burada
 {
+    //My General Shop Money      
     [SerializeField] int money = 5000;
-    [SerializeField] TMPro.TextMeshProUGUI moneyText,  PurchasedText;
+    //moneyText variable where money is displayed on the screen
+    [SerializeField] TextMeshProUGUI moneyText;
+    //after purchase text exp:satýn alýndý,yetersiz bakiye
+    [SerializeField] TextMeshProUGUI PurchasedText;
+    //Reaching Scriptible object's content
     public SCInventory playerInventory;
-    BuyItem buyItem = new BuyItem();
+    // to add items to the inventory
+    BuyItem buyItem;
+    //For Update inventory and border for selected object 
     InventoryUIController inventoryUICont;
+   
+
     private void Start()
     {
         buyItem = GetComponent<BuyItem>();
         inventoryUICont = GetComponent<InventoryUIController>();
-        UpdateMoneyText();
-        
-
+        UpdateMoneyText();//Money Update Text
     }
-    private void Update()
-    {
-        //print("Ad:"+buyItem.item.SCItemList[GetSelectedIndex.SelectedIndex].itemName+"Açýklama:" + buyItem.item.SCItemList[GetSelectedIndex.SelectedIndex].itemDescription);
-    }
+   
 
- 
-    public void SpendMoney(int amount)
+
+    public void SpendMoney(int amount)//if we buy products the money will be less
     {
-        if (money>=amount)
+        if (money >= amount)//if we have money,Buy
         {
             money -= amount;
             UpdateMoneyText();
@@ -33,19 +39,20 @@ public class MoneyController : MonoBehaviour
             //Satýn Alýndý Envantere Aktarma Kodunu Yaz
             playerInventory.AddItem(buyItem.ShopUIController.SCItemList[GetSelectedIndex.SelectedIndex]);
             inventoryUICont.UpdateInventoryUI();
+
         }
-        else
+        else// if we dont have money, dont Buy
         {
             PurchasedText.text = "Yetersiz Bakiye";
         }
-       //Bu kýsýmda paramýz yok ise ürünü aldýrmayacak.HALLOLDU
-       
+ 
+
     }
-    public void WinMoney(int amount)
+    public void WinMoney(int amount)//win money
     {
         UpdateMoneyText();
     }
-    public void UpdateMoneyText()
+    public void UpdateMoneyText()//Money Text Update
     {
         moneyText.text = money.ToString();
     }
