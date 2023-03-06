@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Kapi
+  - Drawer
+  - Crosshair
+  - LivingLeft
+  - LivingRight
+  - DeskLamp
+  - DeskLampLight
+  - BedLampLight
+  - CupBoard
+  - KitchenOpen
+  - Living
+  - ShopPanel
+  - Computer
+  - WantToBuy
+  - Cursor
+  - Floor
+  - FarmLandLarge
+  - BuyInventoryContent
+  - itemCollectedText
+  - Key
+  - gameController
+  - Note1
+  - Note2
+  - Cow
+  - CutSceneCam
+  - Note3
+  - drawerAnimCollider
+  - forestAnimCollider
+  - Note4
+  - Item
+  - Light
+  - dungeonAnimCollider
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - Ground
+  - Water
+  - UI
+  - movable
+  - Player
+  - MiniMap
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
